@@ -5,7 +5,16 @@ router = APIRouter(
     tags=["users"]
 )
 
+fake_user = {"username": "hello", "password": "password"}
 
-@router.get("/get")
+
+@router.get("/")
 async def get_user():
-    return "GET USERS"
+    return fake_user
+
+
+@router.post("/signin")
+async def signin():
+    return fake_user
+
+
