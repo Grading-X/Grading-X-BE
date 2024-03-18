@@ -3,7 +3,7 @@ name: Issue Template
 about: Issue 등록을 위한 공통 템플릿
 title: ''
 labels: ''
-assignees: sim-mer
+assignees: ''
 
 ---
 
