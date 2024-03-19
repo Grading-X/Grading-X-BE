@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GradingResponse {
     private Long answerId;
+    private String answer;
     private Long score;
 }

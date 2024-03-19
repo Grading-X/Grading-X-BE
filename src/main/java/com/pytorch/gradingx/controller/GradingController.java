@@ -29,6 +29,7 @@ public class GradingController {
         String result = reader.readLine();
         GradingResponse testGradingResponse = GradingResponse.builder()
                 .answerId(gradingRequest.getAnswerId())
+                .answer(gradingRequest.getAnswer())
                 .score(Long.parseLong(result))
                 .build();
 
