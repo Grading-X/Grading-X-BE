@@ -23,6 +23,11 @@ public class QuestionController {
         return ResponseEntity.ok(new QuestionCriteriaResponse());
     }
 
+    @GetMapping("/{questionId}/{guestEmail}")
+    public ResponseEntity<QuestionGuestAnswerResponse> getQuestionGuestAnswer(@PathVariable long questionId, @PathVariable String guestEmail){
+        return ResponseEntity.ok(new QuestionGuestAnswerResponse());
+    }
+
     @PutMapping("/{questionId}")
     public ResponseEntity updateQuestion(@PathVariable long questionId, @RequestBody QuestionUpdateRequest questionUpdateRequest){
         return ResponseEntity.ok().build();
