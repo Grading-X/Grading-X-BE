@@ -2,7 +2,7 @@ package com.pytorch.gradingx.dto.question;
 
 import java.util.List;
 
-public class QuestionCreateRequest {
+public class QuestionRequest {
     public List<QuestionElement> questions;
 
     class QuestionElement {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class QuestionController {
 
     @PostMapping
-    public ResponseEntity createQuestion(@RequestBody QuestionCreateRequest questionCreateRequest){
+    public ResponseEntity createQuestion(@RequestBody QuestionRequest questionRequest){
         return ResponseEntity.ok().build();
     }
 
@@ -29,7 +29,7 @@ public class QuestionController {
     }
 
     @PutMapping("/{questionId}")
-    public ResponseEntity updateQuestion(@PathVariable long questionId, @RequestBody QuestionUpdateRequest questionUpdateRequest){
+    public ResponseEntity updateQuestion(@PathVariable long questionId, @RequestBody QuestionRequest questionRequest){
         return ResponseEntity.ok().build();
     }
 
