@@ -1,8 +1,6 @@
 package com.pytorch.gradingx.controller;
 
-import com.pytorch.gradingx.dto.question.QuestionCreateRequest;
-import com.pytorch.gradingx.dto.question.QuestionCriteriaResponse;
-import com.pytorch.gradingx.dto.question.QuestionUpdateRequest;
+import com.pytorch.gradingx.dto.question.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +13,12 @@ public class QuestionController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{questionId}")
+    @GetMapping("/list/{assignmentId}")
+    public ResponseEntity<QuestionListResponse> findQuestionList(@PathVariable long assignmentId){
+        return ResponseEntity.ok(new QuestionListResponse());
+    }
+
+    @GetMapping("/criteria/{questionId}")
     public ResponseEntity<QuestionCriteriaResponse> getQuestionCriteria(@PathVariable long questionId){
         return ResponseEntity.ok(new QuestionCriteriaResponse());
     }

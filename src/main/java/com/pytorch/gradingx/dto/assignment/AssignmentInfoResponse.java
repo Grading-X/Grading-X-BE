@@ -9,13 +9,4 @@ public class AssignmentInfoResponse {
     public String description;
     public LocalDateTime startTime;
     public LocalDateTime endTime;
-
-    public List<QuestionElement> questions;
-
-    class QuestionElement {
-        public long id;
-        public int index;
-        public String query;
-        public int weightage;
-    }
 }
