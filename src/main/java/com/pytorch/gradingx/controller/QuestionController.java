@@ -13,7 +13,7 @@ public class QuestionController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/list/{assignmentId}")
+    @GetMapping("/{assignmentId}")
     public ResponseEntity<QuestionListResponse> findQuestionList(@PathVariable long assignmentId){
         return ResponseEntity.ok(new QuestionListResponse());
     }

@@ -15,12 +15,12 @@ public class ObjectionController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/list/guest/{guestEmail}")
+    @GetMapping("/guest/{guestEmail}")
     public ResponseEntity<ObjectionListResponse> findObjectionListByGuest(@PathVariable String guestEmail){
         return ResponseEntity.ok(new ObjectionListResponse());
     }
 
-    @GetMapping("/list/course/{courseId}")
+    @GetMapping("/course/{courseId}")
     public ResponseEntity<ObjectionListResponse> findObjectionListByCourse(@PathVariable long courseId){
         return ResponseEntity.ok(new ObjectionListResponse());
     }
