@@ -17,5 +17,5 @@ public class CourseResponse {
     private String courseName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private MemberInfoResponse memberDto;
+    private MemberInfoResponse member;
 }

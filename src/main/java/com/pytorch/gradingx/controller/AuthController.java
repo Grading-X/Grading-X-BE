@@ -22,6 +22,9 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<TokenResponse> signup(@RequestBody SignupRequest request){
-        return ResponseEntity.ok(new TokenResponse());
+        var token = new TokenResponse();
+        token.accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidHlwZSI6IlVTRVIiLCJpc0FjY2VzcyI6dHJ1ZSwiaWF0IjoxNzEwMTYzNzU2LCJleHAiOjE3MTAxNjU1NTZ9.nm2x6Cspg_9jc2HiOxq05XQhyKtgM1KDfpCh5iNqt5M";
+        token.refreshToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidHlwZSI6IlVTRVIiLCJpc0FjY2VzcyI6ZmFsc2UsImlhdCI6MTcxMDE2Mzc1NiwiZXhwIjoxNzEyNzU1NzU2fQ.1L0-OLcq-cr1zTg2Ij51AOf7OsDrwMeS_FRs0Iut9BI";
+        return ResponseEntity.ok(token);
     }
 }
