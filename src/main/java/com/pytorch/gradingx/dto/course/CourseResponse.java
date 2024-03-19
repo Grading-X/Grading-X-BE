@@ -1,5 +1,6 @@
 package com.pytorch.gradingx.dto.course;
 
+import com.pytorch.gradingx.dto.member.MemberInfoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,5 +17,5 @@ public class CourseResponse {
     private String courseName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Long memberId;
+    private MemberInfoResponse memberDto;
 }
