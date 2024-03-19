@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/assignment")
 public class AssignmentController {
 
-    @PostMapping("/create")
-    public ResponseEntity createAssignment(@RequestBody AssignmentCreateRequest assignmentCreateRequest){
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/list")
-    public ResponseEntity<AssignmentListResponse> findAssignmentList(@RequestParam(required = false) long courseId,
-                                                                    @RequestParam(required = false) String guestEmail){
+    @GetMapping
+    public ResponseEntity<AssignmentListResponse> findAssignmentList(){
         return ResponseEntity.ok(new AssignmentListResponse());
     }
 
-    @GetMapping("/info")
-    public ResponseEntity<AssignmentInfoResponse> getAssignmentInfo(@RequestParam long assignmentId){
+    @GetMapping("/{assignmentId}")
+    public ResponseEntity<AssignmentInfoResponse> getAssignmentInfo(@PathVariable long assignmentId){
         return ResponseEntity.ok(new AssignmentInfoResponse());
     }
 
-
-    @PostMapping("/update")
-    public ResponseEntity updateAssignmentInfo(@RequestBody AssignmentUpdateRequest assignmentUpdateRequest){
+    @PostMapping
+    public ResponseEntity<Long> createAssignment(@RequestBody AssignmentCreateRequest assignmentCreateRequest){
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity deleteAssignment(@RequestParam long assignmentId){
+
+    @PutMapping("/{assignmentId}")
+    public ResponseEntity updateAssignmentInfo(@PathVariable long assignmentId, @RequestBody AssignmentUpdateRequest assignmentUpdateRequest){
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{assignmentId}")
+    public ResponseEntity deleteAssignment(@PathVariable long assignmentId){
         return ResponseEntity.ok().build();
     }
 }

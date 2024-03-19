@@ -1,9 +1,10 @@
 package com.pytorch.gradingx.dto.member;
 
+import com.pytorch.gradingx.domain.enumeration.MemberType;
+
 public class MemberUpdateRequest {
-    public long id;
     public String email;
     public String name;
     public String password;
-    public String memberType;
+    public MemberType memberType;
 }
