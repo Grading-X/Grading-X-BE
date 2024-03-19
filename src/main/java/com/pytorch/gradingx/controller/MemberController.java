@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/member")
 public class MemberController {
 
-    @GetMapping("/info")
+    @GetMapping
     public ResponseEntity<MemberInfoResponse> getMemberInfo(){
         return ResponseEntity.ok(new MemberInfoResponse());
     }
 
-    @PostMapping("/update")
+    @PutMapping
     public ResponseEntity updateMemberInfo(@RequestBody MemberUpdateRequest memberUpdateRequest){
         return ResponseEntity.ok().build();
     }
