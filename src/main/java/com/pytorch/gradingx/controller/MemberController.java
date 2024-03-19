@@ -1,7 +1,7 @@
 package com.pytorch.gradingx.controller;
 
-import com.pytorch.gradingx.dto.member.MemberRequest;
-import com.pytorch.gradingx.dto.member.MemberResponse;
+import com.pytorch.gradingx.dto.member.MemberUpdateRequest;
+import com.pytorch.gradingx.dto.member.MemberInfoResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     @GetMapping("/info")
-    public ResponseEntity<MemberResponse> getMemberInfo(){
-        return ResponseEntity.ok(new MemberResponse());
+    public ResponseEntity<MemberInfoResponse> getMemberInfo(){
+        return ResponseEntity.ok(new MemberInfoResponse());
     }
 
     @PostMapping("/update")
-    public ResponseEntity updateMemberInfo(@RequestBody MemberRequest memberRequest){
+    public ResponseEntity updateMemberInfo(@RequestBody MemberUpdateRequest memberUpdateRequest){
         return ResponseEntity.ok().build();
     }
 
