@@ -22,7 +22,7 @@ public class AssignmentController {
     }
 
     @PostMapping
-    public ResponseEntity createAssignment(@RequestBody AssignmentCreateRequest assignmentCreateRequest){
+    public ResponseEntity<Long> createAssignment(@RequestBody AssignmentCreateRequest assignmentCreateRequest){
         return ResponseEntity.ok().build();
     }
 
@@ -32,8 +32,8 @@ public class AssignmentController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity deleteAssignment(@RequestParam long assignmentId){
+    @DeleteMapping("/{assignmentId}")
+    public ResponseEntity deleteAssignment(@PathVariable long assignmentId){
         return ResponseEntity.ok().build();
     }
 }
