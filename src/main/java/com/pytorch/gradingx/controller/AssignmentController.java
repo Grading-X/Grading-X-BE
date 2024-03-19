@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/assignment")
 public class AssignmentController {
 
-    @GetMapping
-    public ResponseEntity<AssignmentListResponse> findAssignmentList(){
+    @GetMapping("/list/course/{courseId}")
+    public ResponseEntity<AssignmentListResponse> findAssignmentListByCourse(@PathVariable long courseId){
+        return ResponseEntity.ok(new AssignmentListResponse());
+    }
+
+    @GetMapping("/list/guest/{guestEmail}")
+    public ResponseEntity<AssignmentListResponse> findAssignmentListByGuest(@PathVariable String guestEmail){
         return ResponseEntity.ok(new AssignmentListResponse());
     }
 
