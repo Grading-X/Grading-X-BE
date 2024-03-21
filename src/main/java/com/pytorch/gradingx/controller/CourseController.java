@@ -19,7 +19,7 @@ public class CourseController {
             .courseName("종합설계프로젝트2")
             .startDate(LocalDate.of(2024, 3, 4))
             .endDate(LocalDate.of(2024, 6, 15))
-            .memberDto(new MemberInfoResponse())
+            .member(new MemberInfoResponse())
             .build();
 
     CourseResponse testResponse2 = CourseResponse.builder()
@@ -27,7 +27,7 @@ public class CourseController {
             .courseName("컴퓨터그래픽스")
             .startDate(LocalDate.of(2024, 3, 4))
             .endDate(LocalDate.of(2024, 6, 15))
-            .memberDto(new MemberInfoResponse())
+            .member(new MemberInfoResponse())
             .build();
 
     @GetMapping("/{courseId}")
