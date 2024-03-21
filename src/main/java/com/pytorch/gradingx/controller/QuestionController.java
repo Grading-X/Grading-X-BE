@@ -1,9 +1,11 @@
 package com.pytorch.gradingx.controller;
 
 import com.pytorch.gradingx.dto.question.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Question", description = "문제 관련 API")
 @RestController
 @RequestMapping("/api/question")
 public class QuestionController {

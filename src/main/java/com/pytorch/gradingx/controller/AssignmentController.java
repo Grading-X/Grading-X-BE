@@ -4,9 +4,11 @@ import com.pytorch.gradingx.dto.assignment.AssignmentCreateRequest;
 import com.pytorch.gradingx.dto.assignment.AssignmentInfoResponse;
 import com.pytorch.gradingx.dto.assignment.AssignmentListResponse;
 import com.pytorch.gradingx.dto.assignment.AssignmentUpdateRequest;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Assignment", description = "과제 관련 API")
 @RestController
 @RequestMapping("/api/assignment")
 public class AssignmentController {

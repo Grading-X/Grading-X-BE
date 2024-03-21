@@ -3,10 +3,12 @@ package com.pytorch.gradingx.controller;
 import com.pytorch.gradingx.dto.result.ResultGuestRequest;
 import com.pytorch.gradingx.dto.result.ResultGuestResponse;
 import com.pytorch.gradingx.dto.result.ResultInstructorResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Result", description = "결과 관련 API")
 @RestController
 @RequestMapping("/api/result")
 public class ResultController {

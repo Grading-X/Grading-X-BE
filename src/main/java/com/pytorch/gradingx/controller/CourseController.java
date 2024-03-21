@@ -4,6 +4,7 @@ import com.pytorch.gradingx.dto.course.CourseCreateRequest;
 import com.pytorch.gradingx.dto.course.CourseResponse;
 import com.pytorch.gradingx.dto.course.CourseUpdateRequest;
 import com.pytorch.gradingx.dto.member.MemberInfoResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tag(name = "Course", description = "강의 관련 API")
 @RestController
 @RequestMapping("/api/course")
 public class CourseController {

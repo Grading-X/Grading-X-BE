@@ -2,9 +2,11 @@ package com.pytorch.gradingx.controller;
 
 import com.pytorch.gradingx.dto.exam.ExamApplyRequest;
 import com.pytorch.gradingx.dto.exam.ExamSaveRequest;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Exam", description = "시험 관련 API")
 @RestController
 @RequestMapping("/api/exam")
 public class ExamController {

@@ -4,9 +4,11 @@ import com.pytorch.gradingx.dto.auth.LoginRequest;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
 import com.pytorch.gradingx.dto.auth.TokenRequest;
 import com.pytorch.gradingx.dto.auth.TokenResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Auth", description = "인증 관련 API")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

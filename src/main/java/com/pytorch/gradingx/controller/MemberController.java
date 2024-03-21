@@ -2,9 +2,11 @@ package com.pytorch.gradingx.controller;
 
 import com.pytorch.gradingx.dto.member.MemberUpdateRequest;
 import com.pytorch.gradingx.dto.member.MemberInfoResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Member", description = "회원 관련 API")
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
