@@ -2,6 +2,7 @@ package com.pytorch.gradingx.controller;
 
 import com.pytorch.gradingx.dto.grading.GradingRequest;
 import com.pytorch.gradingx.dto.grading.GradingResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ import java.io.InputStreamReader;
 @RestController
 @RequestMapping("/api/grading")
 public class GradingController {
+
+    @Operation(summary = "채점(게스트)", description = "답안을 제출하여 채점합니다.")
     @PostMapping
     public ResponseEntity<GradingResponse> doGrade(@RequestBody GradingRequest gradingRequest) throws IOException {
         ProcessBuilder processBuilder = new ProcessBuilder("python", "test.py", gradingRequest.getAnswerId().toString(), gradingRequest.getAnswer(),

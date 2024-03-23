@@ -3,6 +3,7 @@ package com.pytorch.gradingx.controller;
 import com.pytorch.gradingx.dto.result.ResultGuestRequest;
 import com.pytorch.gradingx.dto.result.ResultGuestResponse;
 import com.pytorch.gradingx.dto.result.ResultInstructorResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/result")
 public class ResultController {
+
+    @Operation(summary = "결과 조회", description = "결과를 조회합니다.")
     @GetMapping
     public ResponseEntity<?> getResult(@RequestHeader(value = "Authorization", required = false) String token,
                                                         @Valid @RequestBody(required = false) ResultGuestRequest resultGuestRequest) {
