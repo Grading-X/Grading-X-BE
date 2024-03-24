@@ -15,19 +15,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Operation(summary = "로그인", description = "email, password를 이용하여 로그인합니다.")
+    @Operation(summary = "로그인", description = "email, password를 이용하여 요청 새로 생성된 액세스 토큰과 리프레시 토큰을 반환")
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(new TokenResponse());
     }
 
-    @Operation(summary = "액세스 토큰 재발급", description = "JWT 토큰을 둘다 입력하여 액세스 토큰을 재발급합니다.")
+    @Operation(summary = "로그아웃", description = "http 요청의 헤더에서 액세스 토큰을 추출하고 유효성 체크 후, 리프레시 토큰 DB에서 삭제")
+    @PostMapping("/logout")
+    public ResponseEntity login() {
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "액세스 토큰 재발급", description = "http 요청의 헤더에서 리프레시 토큰을 추출하고 유효성, 존재유무 체크 후, 확인되면 액세스 토큰 리턴.")
     @PostMapping("/reissue")
-    public ResponseEntity<String> reissueAccessToken(@RequestBody TokenRequest token) {
+    public ResponseEntity<String> reissueAccessToken() { //요청 부분 헤더에서 리프레시 토큰 받아오도록 할 예정
         return ResponseEntity.ok("");
     }
 
-    @Operation(summary = "회원가입", description = "email, password를 이용하여 회원가입합니다.")
+    @Operation(summary = "회원가입", description = "email, password, 이름, 멤버 타입을 요청받고, 새로 생성된 액세스 토큰과 리프레시 토큰을 반환")
     @PostMapping("/signup")
     public ResponseEntity<TokenResponse> signup(@RequestBody SignupRequest request) {
         var token = new TokenResponse();
