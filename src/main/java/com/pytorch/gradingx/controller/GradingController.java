@@ -3,6 +3,8 @@ package com.pytorch.gradingx.controller;
 import com.pytorch.gradingx.dto.grading.GradingRequest;
 import com.pytorch.gradingx.dto.grading.GradingResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-@Tag(name = "Grading", description = "문제 제출 관련 API")
+@Tag(name = "Grading", description = "문제 채점 관련 API")
 @RestController
 @RequestMapping("/api/grading")
 public class GradingController {
