@@ -42,20 +42,20 @@ public class CourseController {
         return ResponseEntity.ok().body(courseResponseList);
     }
 
-    @Operation(summary = "강의 조회", description = "courseId를 이용하여 해당 강의의 정보를 조회합니다.")
+    @Operation(summary = "강의 조회", description = "courseId에 해당하는 강의의 정보를 조회합니다.")
     @GetMapping("/{courseId}")
     public ResponseEntity<CourseResponse> getCourse(@PathVariable Long courseId) {
         return ResponseEntity.ok().body(testResponse);
     }
 
 
-    @Operation(summary = "강의 생성", description = "강의를 생성합니다.")
+    @Operation(summary = "강의 생성", description = "새로운 강의를 생성합니다.")
     @PostMapping
     public ResponseEntity<Void> createCourse(@RequestBody CourseCreateRequest courseCreateRequest) {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "강의 정보 수정", description = "courseId를 이용하여 해당 강의의 정보를 수정합니다.")
+    @Operation(summary = "강의 정보 수정", description = "해당 강의의 정보(강의 이름, 종료 일자)를 수정합니다.")
     @PutMapping("/{courseId}")
     public ResponseEntity<Void> updateCourse(@PathVariable Long courseId, @RequestBody CourseUpdateRequest courseUpdateRequest) {
         return ResponseEntity.ok().build();
