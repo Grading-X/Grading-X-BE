@@ -2,10 +2,8 @@ package com.pytorch.gradingx.controller;
 
 import com.pytorch.gradingx.dto.auth.LoginRequest;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
-import com.pytorch.gradingx.dto.auth.TokenRequest;
 import com.pytorch.gradingx.dto.auth.TokenResponse;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,7 @@ public class AuthController {
 
     @Operation(summary = "로그아웃", description = "http 요청의 헤더에서 액세스 토큰을 추출하고 유효성 체크 후, 리프레시 토큰 DB에서 삭제")
     @PostMapping("/logout")
-    public ResponseEntity login() {
+    public ResponseEntity logout() {
         return ResponseEntity.ok().build();
     }
 
