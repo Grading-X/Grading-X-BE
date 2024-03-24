@@ -5,13 +5,13 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Assignment extends BaseTimeEntity{
+public class ExamContent extends BaseTimeEntity{
     @Id
     @GeneratedValue
-    @Column(name = "assignment_id")
+    @Column(name = "exam_content_id")
     private Long id;
 
-    private String assignName;
+    private String examName;
 
     private LocalDateTime startAt;
 

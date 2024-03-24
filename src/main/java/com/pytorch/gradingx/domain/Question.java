@@ -10,8 +10,8 @@ public class Question extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assignment_id")
-    private Assignment assignment;
+    @JoinColumn(name = "exam_content_id")
+    private ExamContent examContent;
 
     private Integer index;
     private String query;

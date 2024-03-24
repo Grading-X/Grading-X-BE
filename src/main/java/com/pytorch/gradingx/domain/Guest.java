@@ -9,6 +9,6 @@ public class Guest extends BaseTimeEntity{
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assignment_id")
-    private Assignment assignment;
+    @JoinColumn(name = "exam_content_id")
+    private ExamContent examContent;
 }
