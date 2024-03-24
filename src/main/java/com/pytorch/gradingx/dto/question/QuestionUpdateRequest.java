@@ -14,7 +14,6 @@ public class QuestionUpdateRequest {
     public List<QuestionElement> questions;
 
     @AllArgsConstructor
-    @Builder
     @Schema(description = "문제 요소")
     class QuestionElement {
         @Schema(description = "문제 ID", example = "1")

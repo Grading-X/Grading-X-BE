@@ -14,7 +14,6 @@ public class QuestionCreateRequest {
     public List<QuestionElement> questions;
 
     @AllArgsConstructor
-    @Builder
     @Schema(description = "문제 요소")
     class QuestionElement {
         @Schema(description = "문제 내용", example = "1 + 1 = ?")

@@ -16,7 +16,6 @@ public class ObjectionListResponse {
     List<ObjectionElement> objections;
 
     @AllArgsConstructor
-    @Builder
     @Schema(description = "이의 요소")
     class ObjectionElement {
         @Schema(description = "이의 ID", example = "1")

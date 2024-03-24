@@ -15,7 +15,6 @@ public class AssignmentListResponse {
     public List<AssignmentElement> assignments;
 
     @AllArgsConstructor
-    @Builder
     @Schema(description = "과제 요소")
     class AssignmentElement {
         @Schema(description = "과제 ID", example = "1")
