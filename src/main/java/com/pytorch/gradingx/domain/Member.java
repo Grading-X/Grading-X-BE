@@ -24,4 +24,8 @@ public class Member extends BaseTimeEntity{
     private Vendor vendor;
 
     private String vendorEmail;
+
+    public boolean validatePassword(String password){
+        return this.password.equals(password);
+    }
 }
