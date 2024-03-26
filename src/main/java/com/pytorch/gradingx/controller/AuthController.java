@@ -28,6 +28,7 @@ public class AuthController {
             throw new RuntimeException("사용자 정보가 일치하지 않습니다.");
         }
         Token token = jwtTokenGenerator.createToken(request.email);
+        memberService.saveRefreshToken(request.email, token.getRefreshToken());
         return ResponseEntity.ok(new TokenResponse(token));
     }
 

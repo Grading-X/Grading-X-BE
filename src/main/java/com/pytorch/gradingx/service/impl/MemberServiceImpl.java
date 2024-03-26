@@ -21,4 +21,14 @@ public class MemberServiceImpl implements MemberService {
         }
         return member.get().validatePassword(password);
     }
+
+    @Override
+    public void saveRefreshToken(String email, String refreshToken) {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if(member.isEmpty()){
+            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
+        }
+        member.get().setRefreshToken(refreshToken);
+        memberRepository.save(member.get());
+    }
 }

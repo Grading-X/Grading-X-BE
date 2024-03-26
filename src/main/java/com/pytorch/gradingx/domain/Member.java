@@ -25,7 +25,13 @@ public class Member extends BaseTimeEntity{
 
     private String vendorEmail;
 
+    private String refreshToken;
+
     public boolean validatePassword(String password){
         return this.password.equals(password);
+    }
+
+    public void setRefreshToken(String refreshToken){
+        this.refreshToken = refreshToken;
     }
 }
