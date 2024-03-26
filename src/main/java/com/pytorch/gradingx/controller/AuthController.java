@@ -3,20 +3,32 @@ package com.pytorch.gradingx.controller;
 import com.pytorch.gradingx.dto.auth.LoginRequest;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
 import com.pytorch.gradingx.dto.auth.TokenResponse;
+import com.pytorch.gradingx.jwt.JwtTokenGenerator;
+import com.pytorch.gradingx.jwt.Token;
+import com.pytorch.gradingx.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Auth", description = "인증 관련 API")
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
+    private final MemberService memberService;
+    private final JwtTokenGenerator jwtTokenGenerator;
 
     @Operation(summary = "로그인", description = "email, password를 이용하여 요청 새로 생성된 액세스 토큰과 리프레시 토큰을 반환")
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok(new TokenResponse());
+        if(!memberService.checkMember(request.email, request.password)) {
+            throw new RuntimeException("사용자 정보가 일치하지 않습니다.");
+        }
+        Token token = jwtTokenGenerator.createToken(request.email);
+        return ResponseEntity.ok(new TokenResponse(token));
     }
 
     @Operation(summary = "로그아웃", description = "http 요청의 헤더에서 액세스 토큰을 추출하고 유효성 체크 후, 리프레시 토큰 DB에서 삭제")
