@@ -1,9 +1,7 @@
 package com.pytorch.gradingx.dto.auth;
 
-import com.pytorch.gradingx.jwt.Token;
+import com.pytorch.gradingx.authentication.jwt.Token;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
