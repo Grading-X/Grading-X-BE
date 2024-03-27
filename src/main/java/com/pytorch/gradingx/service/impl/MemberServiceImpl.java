@@ -1,6 +1,7 @@
 package com.pytorch.gradingx.service.impl;
 
 import com.pytorch.gradingx.domain.Member;
+import com.pytorch.gradingx.dto.auth.SignupRequest;
 import com.pytorch.gradingx.repository.MemberRepository;
 import com.pytorch.gradingx.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,12 @@ public class MemberServiceImpl implements MemberService {
         }
         member.get().setRefreshToken(refreshToken);
         memberRepository.save(member.get());
+    }
+
+    @Override
+    public void signup(SignupRequest request) {
+        Member member = new Member();
+        member.signup(request);
+        memberRepository.save(member);
     }
 }

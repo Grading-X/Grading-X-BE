@@ -2,9 +2,12 @@ package com.pytorch.gradingx.domain;
 
 import com.pytorch.gradingx.domain.enumeration.MemberType;
 import com.pytorch.gradingx.domain.enumeration.Vendor;
+import com.pytorch.gradingx.dto.auth.SignupRequest;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 public class Member extends BaseTimeEntity{
     @Id
     @GeneratedValue
@@ -33,5 +36,12 @@ public class Member extends BaseTimeEntity{
 
     public void setRefreshToken(String refreshToken){
         this.refreshToken = refreshToken;
+    }
+
+    public void signup(SignupRequest request){
+        this.email = request.email;
+        this.password = request.password;
+        this.name = request.name;
+        this.memberType = request.memberType;
     }
 }
