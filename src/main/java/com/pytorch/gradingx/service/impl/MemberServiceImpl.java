@@ -16,27 +16,35 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean checkMember(String email, String password) {
-        Optional<Member> member = memberRepository.findByEmail(email);
-        if(member.isEmpty()){
-            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
-        }
-        return member.get().validatePassword(password);
+        return findMemberByEmail(email).validatePassword(password);
     }
 
     @Override
     public void saveRefreshToken(String email, String refreshToken) {
-        Optional<Member> member = memberRepository.findByEmail(email);
-        if(member.isEmpty()){
-            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
-        }
-        member.get().setRefreshToken(refreshToken);
-        memberRepository.save(member.get());
+        Member member = findMemberByEmail(email);
+        member.setRefreshToken(refreshToken);
+        memberRepository.save(member);
+    }
+
+    @Override
+    public void deleteRefreshToken(String email) {
+        Member member = findMemberByEmail(email);
+        member.setRefreshToken(null);
+        memberRepository.save(member);
     }
 
     @Override
     public void signup(SignupRequest request) {
+        Optional<Member> optionalMember = memberRepository.findByEmail(request.email);
+        if(optionalMember.isPresent()) {
+            throw new IllegalArgumentException("이미 존재하는 회원입니다.");
+        }
         Member member = new Member();
         member.signup(request);
         memberRepository.save(member);
+    }
+
+    private Member findMemberByEmail(String email) {
+        return memberRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
     }
 }

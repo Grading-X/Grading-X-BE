@@ -1,11 +1,12 @@
 package com.pytorch.gradingx.controller;
 
+import com.pytorch.gradingx.authentication.jwt.JwtTokenValidator;
 import com.pytorch.gradingx.dto.auth.LoginRequest;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
 import com.pytorch.gradingx.dto.auth.TokenResponse;
 import com.pytorch.gradingx.exception.AuthenticationException;
-import com.pytorch.gradingx.jwt.JwtTokenGenerator;
-import com.pytorch.gradingx.jwt.Token;
+import com.pytorch.gradingx.authentication.jwt.JwtTokenGenerator;
+import com.pytorch.gradingx.authentication.jwt.Token;
 import com.pytorch.gradingx.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final MemberService memberService;
     private final JwtTokenGenerator jwtTokenGenerator;
+    private final JwtTokenValidator jwtTokenValidator;
 
     @Operation(summary = "로그인", description = "email, password를 이용하여 요청 새로 생성된 액세스 토큰과 리프레시 토큰을 반환")
     @PostMapping("/login")
@@ -35,15 +37,17 @@ public class AuthController {
     }
 
     @Operation(summary = "로그아웃", description = "http 요청의 헤더에서 액세스 토큰을 추출하고 유효성 체크 후, 리프레시 토큰 DB에서 삭제")
-    @PostMapping("/logout")
-    public ResponseEntity logout() {
+    @GetMapping("/logout")
+    public ResponseEntity logout(@CookieValue("access-token") String accessToken) {
+        String email = jwtTokenValidator.extractEmail(accessToken, jwtTokenGenerator.createSecretKey());
+        memberService.deleteRefreshToken(email);
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "액세스 토큰 재발급", description = "http 요청의 헤더에서 리프레시 토큰을 추출하고 유효성, 존재유무 체크 후, 확인되면 액세스 토큰 리턴.")
-    @PostMapping("/reissue")
-    public ResponseEntity<String> reissueAccessToken() { //요청 부분 헤더에서 리프레시 토큰 받아오도록 할 예정
-        return ResponseEntity.ok("");
+    @GetMapping("/reissue")
+    public ResponseEntity<String> reissueAccessToken(@CookieValue("refresh-token") String refreshToken) {
+        return ResponseEntity.ok(jwtTokenGenerator.reissueAccessToken(refreshToken));
     }
 
     @Operation(summary = "회원가입", description = "email, password, 이름, 멤버 타입을 요청받고, 새로 생성된 액세스 토큰과 리프레시 토큰을 반환")
