@@ -1,4 +1,4 @@
-package com.pytorch.gradingx.jwt;
+package com.pytorch.gradingx.authentication.jwt;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -40,24 +40,24 @@ public class JwtTokenGenerator {
     }
 
     public String reissueAccessToken(String refreshToken) {
-        jwtTokenValidator.validateToken(refreshToken, createSecretKey(secret), TokenType.REFRESH);
-        String email = jwtTokenValidator.extractEmail(refreshToken, createSecretKey(secret));
+        jwtTokenValidator.validateTokenType(refreshToken, createSecretKey(), TokenType.REFRESH);
+        String email = jwtTokenValidator.extractEmail(refreshToken, createSecretKey());
         Date expireTime = new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRE_TIME);
         return generateToken(email, expireTime, Map.of("type", TokenType.ACCESS));
     }
 
     private String generateToken(String email, Date expireTime, Map<String, Object> claims) {
-        Key secretKey = createSecretKey(secret);
+        Key secretKey = createSecretKey();
 
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject(email)
                 .setExpiration(expireTime)
-                .setClaims(claims)
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public Key createSecretKey(String secret) {
+    public Key createSecretKey() {
         byte[] keyBytes = secret.getBytes();
         if (keyBytes.length < 32) {
             try {

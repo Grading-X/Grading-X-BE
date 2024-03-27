@@ -1,4 +1,4 @@
-package com.pytorch.gradingx.jwt;
+package com.pytorch.gradingx.authentication.jwt;
 
 import lombok.Builder;
 import lombok.Getter;
