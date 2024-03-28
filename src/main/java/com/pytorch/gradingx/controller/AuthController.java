@@ -38,7 +38,7 @@ public class AuthController {
 
     @Operation(summary = "로그아웃", description = "http 요청의 헤더에서 액세스 토큰을 추출하고 유효성 체크 후, 리프레시 토큰 DB에서 삭제")
     @GetMapping("/logout")
-    public ResponseEntity logout(@CookieValue("access-token") String accessToken) {
+    public ResponseEntity logout(@CookieValue("access_token") String accessToken) {
         String email = jwtTokenValidator.extractEmail(accessToken, jwtTokenGenerator.createSecretKey());
         memberService.deleteRefreshToken(email);
         return ResponseEntity.ok().build();
@@ -46,7 +46,7 @@ public class AuthController {
 
     @Operation(summary = "액세스 토큰 재발급", description = "http 요청의 헤더에서 리프레시 토큰을 추출하고 유효성, 존재유무 체크 후, 확인되면 액세스 토큰 리턴.")
     @GetMapping("/reissue")
-    public ResponseEntity<String> reissueAccessToken(@CookieValue("refresh-token") String refreshToken) {
+    public ResponseEntity<String> reissueAccessToken(@CookieValue("refresh_token") String refreshToken) {
         return ResponseEntity.ok(jwtTokenGenerator.reissueAccessToken(refreshToken));
     }
 
