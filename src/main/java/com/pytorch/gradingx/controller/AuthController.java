@@ -1,6 +1,6 @@
 package com.pytorch.gradingx.controller;
 
-import com.pytorch.gradingx.authentication.jwt.JwtTokenValidator;
+import com.pytorch.gradingx.annotation.TokenEmail;
 import com.pytorch.gradingx.dto.auth.LoginRequest;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
 import com.pytorch.gradingx.dto.auth.TokenResponse;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final MemberService memberService;
     private final JwtTokenGenerator jwtTokenGenerator;
-    private final JwtTokenValidator jwtTokenValidator;
 
     @Operation(summary = "로그인", description = "email, password를 이용하여 요청 새로 생성된 액세스 토큰과 리프레시 토큰을 반환")
     @PostMapping("/login")
@@ -38,8 +37,7 @@ public class AuthController {
 
     @Operation(summary = "로그아웃", description = "http 요청의 헤더에서 액세스 토큰을 추출하고 유효성 체크 후, 리프레시 토큰 DB에서 삭제")
     @GetMapping("/logout")
-    public ResponseEntity logout(@CookieValue("access_token") String accessToken) {
-        String email = jwtTokenValidator.extractEmail(accessToken, jwtTokenGenerator.createSecretKey());
+    public ResponseEntity logout(@TokenEmail String email) {
         memberService.deleteRefreshToken(email);
         return ResponseEntity.ok().build();
     }
