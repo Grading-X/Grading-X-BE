@@ -12,7 +12,7 @@ import java.util.List;
 @Schema(description = "시험 목록 응답")
 public class ExamContentListResponse {
     @Schema(description = "시험 목록")
-    public List<ExamContentElement> ExamContents;
+    public List<ExamContentElement> examContents;
 
     @AllArgsConstructor
     @Schema(description = "시험 요소")
