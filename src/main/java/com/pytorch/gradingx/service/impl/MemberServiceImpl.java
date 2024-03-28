@@ -2,6 +2,8 @@ package com.pytorch.gradingx.service.impl;
 
 import com.pytorch.gradingx.domain.Member;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
+import com.pytorch.gradingx.dto.member.MemberInfoResponse;
+import com.pytorch.gradingx.dto.member.MemberUpdateRequest;
 import com.pytorch.gradingx.repository.MemberRepository;
 import com.pytorch.gradingx.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +44,27 @@ public class MemberServiceImpl implements MemberService {
         Member member = new Member();
         member.signup(request);
         memberRepository.save(member);
+    }
+
+    @Override
+    public MemberInfoResponse findMemberInfo(String email) {
+        Member member = findMemberByEmail(email);
+        MemberInfoResponse memberInfoResponse = new MemberInfoResponse();
+        member.setInfoDto(memberInfoResponse);
+        return memberInfoResponse;
+    }
+
+    @Override
+    public void updateMemberInfo(MemberUpdateRequest memberUpdateRequest, String email) {
+        Member member = findMemberByEmail(email);
+        member.updateInfo(memberUpdateRequest);
+        memberRepository.save(member);
+    }
+
+    @Override
+    public void deleteMember(String email) {
+        Member member = findMemberByEmail(email);
+        memberRepository.delete(member);
     }
 
     private Member findMemberByEmail(String email) {

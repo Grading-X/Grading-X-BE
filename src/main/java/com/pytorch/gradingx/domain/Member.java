@@ -3,6 +3,8 @@ package com.pytorch.gradingx.domain;
 import com.pytorch.gradingx.domain.enumeration.MemberType;
 import com.pytorch.gradingx.domain.enumeration.Vendor;
 import com.pytorch.gradingx.dto.auth.SignupRequest;
+import com.pytorch.gradingx.dto.member.MemberInfoResponse;
+import com.pytorch.gradingx.dto.member.MemberUpdateRequest;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
@@ -43,5 +45,17 @@ public class Member extends BaseTimeEntity{
         this.password = request.password;
         this.name = request.name;
         this.memberType = request.memberType;
+    }
+
+    public void setInfoDto(MemberInfoResponse memberInfoResponse){
+        memberInfoResponse.email = this.email;
+        memberInfoResponse.name = this.name;
+        memberInfoResponse.memberType = this.memberType;
+    }
+
+    public void updateInfo(MemberUpdateRequest memberUpdateRequest) {
+        this.name = memberUpdateRequest.name;
+        this.password = memberUpdateRequest.password;
+        this.memberType = memberUpdateRequest.memberType;
     }
 }
