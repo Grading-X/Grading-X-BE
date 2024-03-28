@@ -29,9 +29,9 @@ public class TokenCheckInterceptor implements HandlerInterceptor {
         }
 
         for(Cookie cookie : cookies) {
-            if(cookie.getName().equals("access-token") || cookie.getName().equals("refresh-token")) {
+            if(cookie.getName().equals("access_token") || cookie.getName().equals("refresh_token")) {
                 try {
-                    TokenType tokenType = cookie.getName().equals("access-token") ? TokenType.ACCESS : TokenType.REFRESH;
+                    TokenType tokenType = cookie.getName().equals("access_token") ? TokenType.ACCESS : TokenType.REFRESH;
                     validateToken(cookie.getValue(), tokenType);
                     check++;
                 } catch (JwtException e) {
